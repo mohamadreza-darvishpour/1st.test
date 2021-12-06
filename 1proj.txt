@@ -1,0 +1,3 @@
+hi 
+i start the git 
+bye
