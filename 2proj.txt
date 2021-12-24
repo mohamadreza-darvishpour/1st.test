@@ -1,9 +1,12 @@
 second test
 and continue...hey
 good
-next
-next
-next
+
+delete all "next" 
 
 
-its designed to show branches at 1.branches just now.
+ready for new branch 
+
+
+branch name="2branch"
+
