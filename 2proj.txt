@@ -1,6 +1,10 @@
 second test
 and continue...hey
 good
-next
-next
-next
+delete all "next" 
+
+
+ready for new branch 
+
+
+branch name="2branch"
