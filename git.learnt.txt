@@ -1,0 +1,858 @@
+how to use git!!!
+setting of git:
+1.system level at /etc/gitconfig
+at windows: program files/git/etc/gitconf
+
+
+2.user level
+~/.gitconfig   # hidden file
+windows:$home\.gitconfig
+
+ 
+3.project:
+        my-project/.git/config
+        
+
+
+###how to change system settings 
+        git config --system
+        
+### " "   "  user settings
+        git config --global
+        ***global isn't all the world
+        
+###  "  "  "  project settings:
+        git config
+        
+ls - la ### in linux to show hidden folder
+
+git config --global user.name "that_name"      at git in global level or user level setting at configuration file and set the user.name to "that_name"
+
+git config --global user.email "that@that.com"
+
+git config user.name   # show the user.name at configuration file from git
+
+git config user.email   #show ...
+
+cd ~     # it means go to user linux
+
+cat /.gitconfig    # show the config setting and users 
+
+
+git config --global core.editor "gedit"    # set the default editor to "gedit"
+
+
+git config --global color.ui true  # use defferent color opening the files
+
+
+
+auto completion 
+# mac and unix 
+
+
+
+# we can download a git completion bash from github
+
+
+
+# f  could mean forward adn b=backward
+
+man   # in linux means manual (guidance of command) for example: manual git-log   or manual git-add
+
+
+
+initialize repository:  # start repo
+
+go to the project path in your system .
+git init   # start tracking project by git and make a hidden repo named .git
+
+
+
+
+
+
+
+####
+##### usage of git
+#first we make a file at our directory that (git init)
+
+
+git add  /pathorname.of.file # add file to our init path
+git commit pathorname.of.file -m "our.message.that.necessory"
+
+# so we use first add and then commit -m
+
+
+#commit means سرسبردن
+# commit -m or message should be short.little50word.presentperfecttenseuse.
+
+
+
+git log   # say what persons do
+git log -n2   # show from second log and after
+
+git log --since=2021-03-09   #  show logs since date till today    it means after date
+
+git log --until=2021-03-01   # show the logs from start till date
+
+
+git log --author="author-name"     
+
+git log --grep="text"  # find the text at the logs
+
+
+when we use the git add and git commit -m"mess.." we know that before <<git add>> our file is in working stage and after that it has been kept in staging index but after command<<git commit -m'mes...'>> it has gone to repository stage and its so importent to know after git commit the changes has been saved at file  as ***nextversion(v3.4.5...)***
+
+
+
+HASH values (passwording)
+SHA-1
+checksum: managing the changes with sha-1 algorithm
+
+
+
+#status in git
+git status  # show the status
+
+
+#restore from working dir
+git restore <file>
+
+
+#unstage the changes
+git restor --staged <filename>
+# or you can use 
+git reset HEAD <filename>
+
+# we can commit straightly!!!
+
+# compare defferences between files at unix based
+diff   -operand file1 file2
+
+
+#show differences between working dir's files and repo's files by git
+git diff #show differences
+# - means that minus or cut 
+# +means that add
+#---= repo's' file and +++=working dir's file
+# @@ shows the line number change 
+
+git diff  # show all files changes
+git diff <file>
+
+git diff --staged #compare changes of files at staging index or you can use :::
+git diff --cached
+
+
+****ways to delete at git 
+first:
+move it to recyclebin and add that file and commit 
+
+
+second: 
+git rm  <file>  and after
+git commit -m "mess.." <file>
+..................
+
+
+
+
+rename at git 
+
+first way:
+change file name by mouse
+git add <newfilename>
+git rm  <lastfilename>  
+# now git find out renaming the file
+
+second way::
+#mv (move) is rename at git 
+git mv <lastfilename>  <newfilename>
+
+
+#move files at git 
+git mv </source/file> </dest>
+
+
+git diff --color-word <file>  #show the change exactly
+
+
+git commit -am "mess.."#straightly committing
+
+
+undo in git at working dir
+#when we are in working dir to undo changes
+git checkout --  <filename>   # -- means that we dont want repo just file
+
+
+undo in git at staging dir
+#when we are at staging dir to undo
+git reset 	HEAD  <filename>  # undo from staging dir to wor... dir.
+
+# change last commited file with new staged file
+git --amend  --m "mess.." <new_staged_file>    # it changes the last file that commited with new file that are in staging dir
+
+
+
+#restore a file from log by first part of sha1 code
+git checkout  partof_sha1_code   --  filename    #undo the one of the committed file from log     **we use --   to show that don't wan't repo and dir just file
+
+
+##########learn  revert
+######3##i couldn't use  revert at git 
+git revert   Part_of_sha1.logged
+
+
+
+RESET
+#how to use git reset:
+#reset   --soft   or   --mixed(default)   or   --hard
+# --soft   doesn't change staging index or working directory
+#--mixed  is default   change staging index to match repository and doesn't change your working dirctory
+#--hard   change staging index and working dir  to match repository
+
+#--soft
+git reset --soft  SHA1-CODE  # change HEAD pointer(~/Documents/gitprojects/.git/refs/heads/master) to the logged sha1-code and after SAH1-CODE won't be showed    and put the changes in staging index
+
+
+#--mixed
+git reset --mixed  SHA1-CODE  # change HEAD pointer(~/Documents/gitprojects/.git/refs/heads/master) to the logged sha1-code and after SAH1-CODE won't be showed      and put changes at working.dir
+
+
+# --hard
+git reset --hard  sha1-logged-code
+# reset --hard   make sha1-logged-code equal to last logged as repo and delete all changes from working and staging dir
+
+
+# clean junk file
+git clean -i # clean untracked file -i  show interactive terminal -f forcing remove  -n show what would be done and --help to see other
+
+
+
+
+
+IGNOROE sth
+#to ignore sth make .gitignore file by a text editor at your working dir and write all of the file you want to ignore using regular expression(regex)
+vi .gitignore  
+and at the file(*.type=ignore files ending with .type
+/1dir/2ent = 2ent at 1dir dir ignore
+/1dir/2dir/=all file at /1dir/2dir ignore
+! /path/3file   don't ignore 3file at /path
+sta[1-9].txt  ignore sat1.txt and sta2.txt .....sta9.txt
+
+first.*.txt ignore all file that start with first and ends with .txt
+
+
+)
+***use www.gitignore.io to find gitignore file to your repo
+***gitignore is so importent
+
+
+GLOBAL .GITIGNORE **************
+git config --global core.excludefile ~/.gitignore_filename_global    #it put the .gitignore_filename_global to .gitconfig at core paragraph and ignore all files at it
+
+
+IGNORE LAST TRACKED FILE AT REPO
+#we want to ignore file at repo from now ====we have file at repo but every changes should be ignored.
+first:
+add file_to_ignore in .gitignore
+second:
+git rm --cached  file_to_ignore
+third: add and commit changes#now all the changes on file_to_ignore won't be set and show but we have file. 
+
+
+
+***git don't control empty folder 
+# so we should to make folder unempty by
+mkdir <ourfolder>
+at<ourfolder>
+	touch  .file_name_e.g._gitkeep# we made a hidden file to notice git that isn't empty.
+	
+REFERENCING COMMITS
+            برگشتن به قبل 
+            
+ANCESTRY:
+parent commit
+HEAD^,ac8s88^,master^
+HEAD~ OR  HEAD~1
+grandparent commit
+HEAD^^,as87l8a6^^,master^^
+great-grandparent commit
+HEAD~2
+HEAD^^^,ad786kd87^^^,master^^^
+or 
+HEAD~3            
+---------------------------
+
+
+
+
+git ls-tree Head or master #show folder and file a path
+
+blob=file
+tree=folder or dir
+
+git ls-tree master~4   #show the 4commits ago.
+
+
+git log --oneline# show the sha-1 and message at one line
+
+git log --oneline -4 # show just 4 commit
+
+git log --since="date"
+git log --after="date" # after means since
+git log --before=2.days# before=until    before 2.days
+
+git log --grep="subject or..."     # use regex
+
+
+ git log  first-sha1..second-sha1  # it show logs between first-sha1 and second-sha1   ..=to
+ 
+git log   sha1..subject
+
+git log -p  #-p show the description
+
+git log --stat --summary # --stat=status    show summary of status at log
+
+git log --format=<x> # <x> could be short.email.raw.oneline.medium.full.fuller
+
+
+git log --graph # show the graph
+
+
+
+
+git show sha1.code # show all changes at a commit
+git show SHA1 --format=.....
+git show SHA1   HEAD  or HEAD^ OR HEAD~2
+   
+COMPARISON OF COMMITS****
+git diff --cached or --staged  <filename>
+git diff sha1.code  <filename>or not
+git diff sha1.code1..sha1.code2 # changes fo code1 to code2
+
+
+git diff sha1..head^^
+
+git diff --stat --summary  sha1.code  head
+
+git diff -b sha1.commit  #-b=ignore all space  -w=ignore line and space changes.
+
+
+
+BRANCHING***********
+branches are cheap
+try new ideas
+
+
+
+git branch  # show the branch and ____*____means main branch
+
+
+**make new branch
+git branch <newname>  # it make a new branch (it create a new folder as name as <newname> at /.git/ref/heads.
+**or
+
+git checkout -b  <b.name>   #makes b.name branch and go there
+
+
+***switch between braches
+git  checkout  <branch_name> #go to <branch_name> branch
+
+***error:Automatic merge failed###it shwos the git cannot change the file automaticaly #but it help you to change it by use git status it show you the change in a specific different design
+
+
+
+
+STASH  
+# when we have some new change but we don't want to commit them and we want to checkout to other branch we stash our position before changing branch by:
+git stash  
+*or
+git stash save  "specific message..."
+
+
+# save changes at a branch by save the chenges not at repo.
+
+
+git stash list   # show the stashed changes.
+
+
+git stash apply <stashed_name> #return stashed_name change to working dir but we have this change yet.
+
+git stash pop  <stash.name> #delete or drop stash.name change at stash list 
+
+git stash drop <stash.name> #drop or remove stash.name from stashlist without saving or returning.
+
+we can use all stashes at all branches.
+
+
+
+
+
+START GITHUB GITLAB....
+
+
+sign up in github
+
+
+ADD PROJ TO GIT SSH
+git remote add <remote.name>  <https..>   #add our repo remotely to  https.address that has been get by git at git named remote.name 
+
+git remote   # show the remote proj
+
+git remote -v   #show the address 
+
+
+PUSH TO GITHUB REPO
+git push -u  <remote.name>  <branch.name>  # push current pro at remote.name address from branch.name  ***after verifying pro has been added.
+  
+  
+my token:  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
+
+
+git push -u <remote.name>  <newbranch.name> # it add new branch named newbranch.name to our repo at remote.name
+
+
+git push -u  <remote.name> --all #send all changes at all branches to <remote.name> repo at github
+
+
+
+
+
+PULL    
+ 
+#pull the changes from github to system
+
+git pull <remote.name>  #get or pull changes from github to our pc
+
+
+git branch -a   # show all branches.remote and other.
+
+
+
+***git pull=git fetch +git merge
+
+
+git fetch  #get the changes and commit them at hidden approximately equal branch at our branches to show to need to pull. istead of pull we can use fetch+merge  (((((git fetch+git merge <branchname>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+   
+   
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+
